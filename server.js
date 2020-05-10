@@ -1,5 +1,8 @@
 const express = require("express")
 const bodyparser = require("body-parser")
+const passport = require("passport")
+const {Pool, Client} = require("pg")
+require("./config/config")
 const port = process.env.PORT || 3000
 
 const app = express()
@@ -7,6 +10,8 @@ const app = express()
 const postData = []
 app.use(bodyparser.urlencoded({extended: true}))
 app.use(bodyparser.json())
+
+
 
 app.get("/",(req,res)=>{
     res.send('{status: success}')

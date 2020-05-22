@@ -59,7 +59,7 @@ app.get("/data", async (req,res)=>{
     try {
         
        const allData = await pool.query(
-           "SELECT * FROM user_table"
+           "SELECT * FROM data_table"
        );
 
        res.json(allData.rows);

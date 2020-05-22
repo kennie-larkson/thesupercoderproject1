@@ -38,11 +38,11 @@ app.post("/data", async(req,res)=>{
 
     try {
 
-        const {email,password} = req.body
+        const {content} = req.body
 
         const data = await pool.query(
-            "INSERT INTO user_table (user_email, user_password) VALUES ($1,$2) RETURNING *",
-            [email,password]
+            "INSERT INTO data_table (content) VALUES ($1) RETURNING *",
+            [content]
             );
 
         res.json(data.rows[0]);

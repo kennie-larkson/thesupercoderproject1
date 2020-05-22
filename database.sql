@@ -1,7 +1,12 @@
 CREATE DATABASE thesupercoderdb ;
 
-CREATE TABLE user_table(
+CREATE TABLE data_table(
     user_id SERIAL PRIMARY KEY,
-    user_email VARCHAR(225),
-    user_password VARCHAR(225)
+    content VARCHAR(225)
 );
+
+-- CREATE TABLE user_table(
+--     user_id SERIAL PRIMARY KEY,
+--     user_email VARCHAR(225),
+--     user_password VARCHAR(225)
+-- );

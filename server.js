@@ -1,46 +1,45 @@
 const { User } = require("./User");
 const { sequelize_connection } = require("./sequelize_connection");
 const express = require("express");
-// const cors = require('cors') ;
 const passport = require("passport");
 const port = process.env.PORT || 3000;
 const app = express();
 
 //middlewares
 app.use(express.json());            // to get data from the client side through the req.body object
-const postData = [];
 
 
 //ROUTES : using POSTMAN as client side
-app.get("/", async (req,res)=>{
+app.get("/", (req,res)=>{
 
-    try {
+    res.json({status: "success"});
+    // try {
 
         // res.json({status: "success"});
 
-        await sequelize_connection.authenticate();
-        console.log('Connection has been established successfully');
+    //     await sequelize_connection.authenticate();
+    //     console.log('Connection has been established successfully');
 
 
-        (async ()=> {
-            // await Article.sync({force: true});
-            await User.sync();
-            await User.create({
-                email: "This is the second title",
-                password: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`
-            });
-            const entries = await User.findAll();
-            console.log( entries.map(entry => entry instanceof User));
-            console.log(`All Users: ${JSON.stringify(entries,null,2)}`);
-            res.json(entries);
-        })();
-        console.log('The table for the User model was just (re)created!');
+    //     (async ()=> {
+    //         // await Article.sync({force: true});
+    //         await User.sync();
+    //         await User.create({
+    //             email: "This is the second title",
+    //             password: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`
+    //         });
+    //         const entries = await User.findAll();
+    //         console.log( entries.map(entry => entry instanceof User));
+    //         console.log(`All Users: ${JSON.stringify(entries,null,2)}`);
+    //         res.json(entries);
+    //     })();
+    //     console.log('The table for the User model was just (re)created!');
 
 
-    } catch (err) {
-        console.error('Unable to connect to the database server:',err.message);
+    // } catch (err) {
+    //     console.error('Unable to connect to the database server:',err.message);
         
-    } 
+    // } 
        
 });
 
@@ -77,9 +76,9 @@ app.post("/data", async(req,res)=>{
     try {
 
         // clientData = req.body;
-        postData.push(req.body)
-        console.log(postData[0]);
-        res.json(postData[0]);
+        // postData.push(req.body)
+        // console.log(postData[0]);
+        res.json(req.body);
         
         
     } catch (err) {
@@ -93,7 +92,8 @@ app.get("/data", async (req,res)=>{
     
     try {
         
-       res.json(postData[0]);
+       res.json(req.body);
+       console.log(req.body);
 
     } catch (err) {
         console.error(err.message);

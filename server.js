@@ -1,4 +1,4 @@
-const { Article } = require("./Article");
+const { User } = require("./User");
 const { sequelize_connection } = require("./sequelize_connection");
 const express = require("express");
 // const cors = require('cors') ;
@@ -24,17 +24,17 @@ app.get("/", async (req,res)=>{
 
         (async ()=> {
             // await Article.sync({force: true});
-            await Article.sync();
-            await Article.create({
-                title: "This is the second title",
-                body: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`
+            await User.sync();
+            await User.create({
+                email: "This is the second title",
+                password: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`
             });
-            const entries = await Article.findAll();
-            console.log( entries.map(entry => entry instanceof Article));
-            console.log(`All Articles: ${JSON.stringify(entries,null,2)}`);
+            const entries = await User.findAll();
+            console.log( entries.map(entry => entry instanceof User));
+            console.log(`All Users: ${JSON.stringify(entries,null,2)}`);
             res.json(entries);
         })();
-        console.log('The table for the Article model was just (re)created!');
+        console.log('The table for the User model was just (re)created!');
 
 
     } catch (err) {
@@ -53,10 +53,10 @@ app.post("/", async (req,res)=>{
         console.log(req.body);
 
         (async ()=>{
-            await Article.sync();
-            await Article.create({
-                title: req.body.title,
-                body: req.body.body
+            await User.sync();
+            await User.create({
+                email: req.body.email,
+                password: req.body.password
             });
 
             res.send('Post received');

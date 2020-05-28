@@ -75,9 +75,7 @@ app.post("/data", async(req,res)=>{
 
     try {
 
-        // clientData = req.body;
-        // postData.push(req.body)
-        // console.log(postData[0]);
+        
         res.json(req.body);
         
         

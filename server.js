@@ -12,27 +12,30 @@ const postData = [];
 
 
 //ROUTES : using POSTMAN as client side
-app.get("/", async (req,res)=>{
+app.post("/user/signup", async (req,res)=>{
 
+    let user_email= req.body.email, user_password = req.body.password;
     try {
+        if(user_email === "" || user_password === ""){
+            res.send('Oops! please check that the required fields are properly entered');
+        }
 
-        // res.json({status: "success"});
+        res.sendStatus(200);
 
         await sequelize_connection.authenticate();
         console.log('Connection has been established successfully');
 
-
         (async ()=> {
-            // await Article.sync({force: true});
+            // await User.sync({force: true});
             await User.sync();
             await User.create({
-                email: "This is the second title",
-                password: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`
+                user_email: user_email,
+                user_password: user_password
             });
-            const entries = await User.findAll();
-            console.log( entries.map(entry => entry instanceof User));
-            console.log(`All Users: ${JSON.stringify(entries,null,2)}`);
-            res.json(entries);
+            const user = await User.findByCredentials(user_email, user_password);
+            const token = await User.generateAuthToken();
+            res.send({user, token});
+            
         })();
         console.log('The table for the User model was just (re)created!');
 

@@ -12,10 +12,8 @@ app.use(express.json());  // to get data from the client side through the req.bo
 
 //ROUTES : using POSTMAN as client side
 app.post("/user/signup", async (req,res)=>{
-
-    const user_email= req.body.email, user_password = req.body.password;
     try {
-    
+        const user_email= req.body.email, user_password = req.body.password;
         await sequelize_connection.authenticate();
         console.log('Connection has been established successfully');
 
@@ -24,7 +22,7 @@ app.post("/user/signup", async (req,res)=>{
             const user = await User.findOne({where:{user_email: user_email}});
 
             if(user){
-                res.json({error: "user already exists"});
+                res.json({error: "User already exists."});
                 res.sendStatus(400);
                 
             }

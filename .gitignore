@@ -1,4 +1,4 @@
 node_modules
+
+utils.js
 secret.js
-server
-server.js

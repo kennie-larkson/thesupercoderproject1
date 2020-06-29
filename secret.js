@@ -1,3 +1,8 @@
-const secretKey = "ThisIsASecretKey";
 
-module.exports = secretKey;
+// const privSecret = "ThisIsAPrivateSecretKey";
+
+module.exports = {
+    pubSecret: "ThisIsAPublicSecretKey"
+}
+
+

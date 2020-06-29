@@ -1,37 +1,34 @@
-const { sequelize_connection } = require("./sequelize_connection");
+const  sequelize_connection  = require("../sequelize_connection");
 const Sequelize = require('sequelize');
 
-
-
 //create a data model called user in the database with table name user_table
-const User = sequelize_connection.define('user', {
-    user_id: {
+const User = sequelize_connection.define("user_table", {
+    id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    user_email:{
+    username:{
         type: Sequelize.STRING,
         unique: true,
         allowNull: false,
-        isEmail: true
+        validate:{
+            isEmail: true
+        }
     }, 
-    user_password:{
+    password:{
         type: Sequelize.TEXT,
         allowNull: false
     }
 },
 {
-    tableName: 'user_table',
+   tableName: "user_table",
     createdAt: false,
     updatedAt: false
-});
+}
+);
 
+// User.sync();
 
-
-
-
-
-
-exports.User = User;
-
+module.exports = User;
+// exports.User = User;

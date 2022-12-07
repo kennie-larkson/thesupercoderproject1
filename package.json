@@ -10,8 +10,8 @@
   "author": "Lawal, Abdulrafiu Kehinde",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
     "nodemon": "^2.0.3",
     "passport": "^0.4.1",
     "pg": "^8.1.0"
